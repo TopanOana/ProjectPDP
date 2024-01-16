@@ -1,7 +1,2 @@
-﻿  DistributedTransform.cpp
-  HoughTransformFunctions.cpp
-C:\Users\Oana\source\repos\ProjectPDP\ProjectPDP\DistributedTransform.cpp(21,16): error C2065: 'MPI_COMM_WORLD': undeclared identifier
-C:\Users\Oana\source\repos\ProjectPDP\ProjectPDP\DistributedTransform.cpp(21,2): error C3861: 'MPI_Comm_size': identifier not found
-  NormalThreadsTransform.cpp
-  ProjectPDP.cpp
-  Generating Code...
+﻿  ProjectPDP.cpp
+  ProjectPDP.vcxproj -> C:\Users\Oana\source\repos\ProjectPDP\x64\Debug\ProjectPDP.exe

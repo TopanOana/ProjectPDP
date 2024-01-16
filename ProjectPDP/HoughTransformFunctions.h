@@ -6,7 +6,7 @@ cv::Mat houghLinesTransform(cv::Mat sourceImage);
 
 std::vector<cv::Mat> splitImageInChunks(cv::Mat sourceImage, int numberChunks);
 
-cv::Mat concatenateChunksHorizontally(std::vector<cv::Mat> chunks);
+cv::Mat concatenateChunksVertically(std::vector<cv::Mat> chunks);
 
 cv::Mat uniteMats(cv::Mat m1, cv::Mat m2);
 

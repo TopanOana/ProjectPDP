@@ -7,26 +7,32 @@ using namespace cv;
 
 void DistributedTransform::sendMat(cv::Mat& mat, int destination)
 {
+	cout << "in send mat" << endl;
 	vector<uchar> byteArray;
 	imencode(".png", mat, byteArray);
 
 	int size = byteArray.size();
 
 	MPI_Ssend(&size, 1, MPI_INT, destination, 0, MPI_COMM_WORLD);
+	cout << "sent size of bytearray" << endl;
 
 	MPI_Ssend(byteArray.data(), size, MPI_UNSIGNED_CHAR, destination, 0, MPI_COMM_WORLD);
+	cout << "send bytearray" << endl;
 
 }
 
 Mat DistributedTransform::receiveMat(int source)
 {
+	cout << "in receive mat" << endl;
 	MPI_Status status;
 	int size;
 	MPI_Recv(&size, 1, MPI_INT, source, 0, MPI_COMM_WORLD, &status);
+	cout << "recv size of bytearray" << endl;
 
-	vector<uchar> byteArray;
+	vector<uchar> byteArray(size);
 	MPI_Recv(byteArray.data(), size, MPI_UNSIGNED_CHAR, source, 0, MPI_COMM_WORLD, &status);
 
+	cout << "recv bytearray" << endl;
 	return imdecode(byteArray, IMREAD_UNCHANGED);
 }
 
@@ -67,7 +73,7 @@ void DistributedTransform::masterWorker(std::string filename)
 		linesResult.push_back(recieveLines);
 	}
 
-	Mat linesImage = concatenateChunksHorizontally(linesResult);
+	Mat linesImage = concatenateChunksVertically(linesResult);
 
 	imshow("source image", colorImage);
 	imshow("detected lines", linesImage);
@@ -78,8 +84,7 @@ void DistributedTransform::masterWorker(std::string filename)
 
 	cout << "admin finished" << endl;
 
-	waitKey();
-	exit(0);
+	waitKey(0);
 }
 
 void DistributedTransform::worker(int my_rank)
@@ -96,14 +101,12 @@ void DistributedTransform::worker(int my_rank)
 
 }
 
-void DistributedTransform::gogoBoys()
+void DistributedTransform::gogoBoys(string filename)
 {
 	MPI_Init(NULL, NULL);
 
 	int my_rank;
 	MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
-
-	string filename;
 
 	if (my_rank == 0)
 	{

@@ -1,24 +1,23 @@
 #include<opencv2/opencv.hpp>
 #include<iostream>
+#include "DistributedTransform.h"
 
 using namespace std;
 using namespace cv;
 
+
+void testDistributedTransform(string filename) {
+	DistributedTransform dt;
+	dt.gogoBoys(filename);
+}
+
+
+
 int main()
 {
-	VideoCapture cap(0);
-	Mat frame;
-	if (cap.isOpened() != 0)
-	{
-		while (cap.read(frame))
-		{
-			namedWindow("Webcam Running", WINDOW_AUTOSIZE);
-			imshow("Webcam Running", frame);
-			if (waitKey(100) == 27)
-				break;
-		}
-	}
-	cap.release();
+	std::string filename("C:\\Users\\Oana\\source\\repos\\ProjectPDP\\image.png");
+	testDistributedTransform(filename);
+
 	destroyAllWindows();
 	return 0;
 }

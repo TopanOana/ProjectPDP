@@ -14,6 +14,6 @@ public:
 
 	void worker(int my_rank);
 
-	void gogoBoys();
+	void gogoBoys(std::string filename);
 };
 
