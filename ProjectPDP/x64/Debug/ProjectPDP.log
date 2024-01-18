@@ -1,2 +1,4 @@
-﻿  ProjectPDP.cpp
+﻿  HoughTransformFunctions.cpp
+C:\Users\Oana\source\repos\ProjectPDP\ProjectPDP\HoughTransformFunctions.cpp(43,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Oana\source\repos\ProjectPDP\ProjectPDP\HoughTransformFunctions.cpp(53,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   ProjectPDP.vcxproj -> C:\Users\Oana\source\repos\ProjectPDP\x64\Debug\ProjectPDP.exe
